@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+</head>
+<body>
+
+<table>
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Content</th>
+  </tr>
+  </thead>
+  <tbody>
+  <!-- Iterate over the list of search results -->
+  <tr th:each="petition : ${searchResults}">
+    <td th:text="${petition.title}"></td>
+    <td th:text="${petition.content}"></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
