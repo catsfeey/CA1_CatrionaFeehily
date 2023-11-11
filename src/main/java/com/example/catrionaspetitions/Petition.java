@@ -12,9 +12,14 @@ public class Petition {
     private Long id;
     private String title;
     private String content;
-    private final List<Petition> petitions = new ArrayList<>();
+
     private List<Signature> signatures;
 
+    public Petition(String title, String content) {
+        this.id = ++idCounter;
+        this.title = title;
+        this.content = content;
+    }
     public String getTitle() {
         return title;
     }
@@ -31,14 +36,6 @@ public class Petition {
         this.content = content;
     }
 
-    public void addPetition(Petition petition) {
-        petitions.add(petition);
-    }
-
-    public List<Petition> getPetitions() {
-        return petitions;
-    }
-
     public Long getId() {
         return id;
     }
@@ -47,17 +44,9 @@ public class Petition {
         this.id = id;
     }
 
-    public List<Petition> searchPetitions(String title) {
-        List<Petition> result = new ArrayList<>();
 
-        for (Petition petition : petitions) {
-            if (petition.getTitle().equalsIgnoreCase(title)) {
-                result.add(petition);
-            }
-        }
 
-        return result;
-    }
+
 }
 
 
