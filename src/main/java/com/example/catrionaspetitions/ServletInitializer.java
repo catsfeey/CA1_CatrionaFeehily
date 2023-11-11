@@ -45,5 +45,11 @@ public class ServletInitializer extends SpringBootServletInitializer {
 		return "redirect:/";
 	}
 
+	@GetMapping("/search")
+	public String searchPetitions() {
+
+		return "search-petition";
+	}
+
 
 }
