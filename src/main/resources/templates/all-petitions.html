@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>All Petitions</title>
+</head>
+<body>
+<h2>All Petitions</h2>
+<ul>
+  <li th:each="petition : ${petitions}">
+    <a th:href="@{/petitions/{petitionId}(petitionId=${petition.id})}">
+      <span th:text="${petition.title}"></span> -
+      <span th:text="${petition.content}"></span>
+    </a>
+  </li>
+</ul>
+</body>
+</html>
