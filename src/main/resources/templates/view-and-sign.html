@@ -16,7 +16,8 @@
 <hr>
 
 <h2>Sign Petition</h2>
-<form th:action="@{/{id}}" method="post">
+
+<form th:action="@{/submit}" method="post">
   <li th:each="petition : ${petitionToSign}">
   <input type="hidden" name="petitionId" th:value="${petition.id}">
   </li>
@@ -27,12 +28,10 @@
 
   <label for="email">Your Email:</label>
   <input type="email" id="email" name="email" required>
-
-  <br>
-
   <button type="submit">Sign Petition</button>
-</form>
 
+</form>
+<br>
 <a th:href="@{/}">Back to All Petitions</a>
 </body>
 </html>

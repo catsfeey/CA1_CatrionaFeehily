@@ -67,10 +67,31 @@ public class ServletInitializer extends SpringBootServletInitializer {
 			for (Petition petitionToSign : petitions) {
 				if (petitionToSign.getId()==(id)) {
 					model.addAttribute("petitionToSign", petitionToSign);
+					model.addAttribute("id", id);
 				}
 			}
+
 			return "view-and-sign";
 		}
 
+	@PostMapping("/submit")
+	public String submitSignedPetition(@RequestParam Long petitionId, @RequestParam String name, @RequestParam String email, Model model) {
+
+		List<Petition.Signature> signatureList = new ArrayList<>();
+		for (Petition petitionToAddSignatureTo : petitions) {
+			if (petitionToAddSignatureTo.getId()==(petitionId)) {
+				petitionToAddSignatureTo.addSignature(name, email);
+				signatureList = petitionToAddSignatureTo.getSignatures();
+				model.addAttribute("petitions", petitions);
+			}
+
+
+		}
+		model.addAttribute("id", petitionId);
+		model.addAttribute("name", name);
+		model.addAttribute("email", email);
+		model.addAttribute("signatureList", signatureList);
+		return "signed-petitions";
+	}
 
 }

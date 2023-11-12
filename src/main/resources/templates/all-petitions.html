@@ -10,8 +10,10 @@
   <li th:each="petition : ${petitions}">
     <p><strong>Title:</strong> <span th:text="${petition.title}"></span></p>
     <p><strong>Content:</strong> <span th:text="${petition.content}"></span></p>
+
     <a th:href="@{/{id}(id=${petition.id})}">View and Sign</a>
   </li>
-</ul>
+  </ul>
+</div>
 </body>
 </html>
