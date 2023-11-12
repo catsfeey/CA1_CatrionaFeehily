@@ -5,10 +5,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +60,17 @@ public class ServletInitializer extends SpringBootServletInitializer {
 		model.addAttribute("searchResults", searchResults);
 		return "search-results";
 	}
+
+	@GetMapping("/{id}")
+	public String viewAndSignPetition(@PathVariable Long id, Model model) {
+		//logic to find petition by ID
+			for (Petition petitionToSign : petitions) {
+				if (petitionToSign.getId()==(id)) {
+					model.addAttribute("petitionToSign", petitionToSign);
+				}
+			}
+			return "view-and-sign";
+		}
 
 
 }

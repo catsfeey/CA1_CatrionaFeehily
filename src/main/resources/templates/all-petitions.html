@@ -8,10 +8,9 @@
 <h2>All Petitions</h2>
 <ul>
   <li th:each="petition : ${petitions}">
-    <a th:href="@{/petitions/{petitionId}(petitionId=${petition.id})}">
-      <span th:text="${petition.title}"></span> -
-      <span th:text="${petition.content}"></span>
-    </a>
+    <p><strong>Title:</strong> <span th:text="${petition.title}"></span></p>
+    <p><strong>Content:</strong> <span th:text="${petition.content}"></span></p>
+    <a th:href="@{/{id}(id=${petition.id})}">View and Sign</a>
   </li>
 </ul>
 </body>

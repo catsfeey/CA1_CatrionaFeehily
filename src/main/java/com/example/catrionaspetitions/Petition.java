@@ -15,6 +15,10 @@ public class Petition {
 
     private List<Signature> signatures;
 
+    public Petition(){
+
+    }
+
     public Petition(String title, String content) {
         this.id = ++idCounter;
         this.title = title;
@@ -43,8 +47,6 @@ public class Petition {
     public void setId(Long id) {
         this.id = id;
     }
-
-
 
 
 }
