@@ -5,7 +5,7 @@
 </head>
 <body>
 <h2>Search Results</h2>
-<div th:if="${searchResults != null and not #lists.isEmpty(searchResults)}">
+<div th:if="${searchResults != null}">
   <ul>
     <li th:each="petition : ${searchResults}">
       <p><strong>Title:</strong> <span th:text="${petition.title}"></span></p>
@@ -14,7 +14,7 @@
   </ul>
 </div>
 
-<div th:if="${searchResults == null or #lists.isEmpty(searchResults)}">
+<div th:if="${searchResults == null}">
   <p>No matching petitions found.</p>
 </div>
 
