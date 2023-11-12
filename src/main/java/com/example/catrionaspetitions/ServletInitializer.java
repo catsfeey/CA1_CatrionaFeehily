@@ -25,7 +25,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 	}
 
 
-	@GetMapping("/all")
+	@GetMapping("/")
 	public String showAllPetitions(Model model) {
 		model.addAttribute("petitions", petitions);
 		return "all-petitions"; // The name of the Thymeleaf template to render
@@ -51,8 +51,8 @@ public class ServletInitializer extends SpringBootServletInitializer {
 		return "search-petition";
 	}
 
-	@PostMapping("/search")
-	public String searchPetitions(@RequestParam String title, Model model) {
+	@GetMapping("/searchResults")
+	public String searchResults(@RequestParam String title, Model model) {
 		List<Petition> searchResults = new ArrayList<>();
 
 		for (Petition petition : petitions) {
@@ -61,7 +61,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 			}
 		}
 		model.addAttribute("searchResults", searchResults);
-		return "search-results"; // The name of the Thymeleaf template to render search results
+		return "search-results";
 	}
 
 

@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Search Results</title>
+  <title>Search Results</title>
 </head>
 <body>
+<h2>Search Results</h2>
+<div th:if="${searchResults != null and not #lists.isEmpty(searchResults)}">
+  <ul>
+    <li th:each="petition : ${searchResults}">
+      <p><strong>Title:</strong> <span th:text="${petition.title}"></span></p>
+      <p><strong>Content:</strong> <span th:text="${petition.content}"></span></p>
+    </li>
+  </ul>
+</div>
 
-<table>
-  <thead>
-  <tr>
-    <th>Title</th>
-    <th>Content</th>
-  </tr>
-  </thead>
-  <tbody>
-  <!-- Iterate over the list of search results -->
-  <tr th:each="petition : ${searchResults}">
-    <td th:text="${petition.title}"></td>
-    <td th:text="${petition.content}"></td>
-  </tr>
-  </tbody>
-</table>
+<div th:if="${searchResults == null or #lists.isEmpty(searchResults)}">
+  <p>No matching petitions found.</p>
+</div>
+
+<a th:href="@{/}">Back to All Petitions</a>
 </body>
 </html>

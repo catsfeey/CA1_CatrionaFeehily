@@ -21,22 +21,6 @@
 
 <hr>
 
-<h2>All Petitions</h2>
-<table>
-    <thead>
-    <tr>
-        <th>Title</th>
-        <th>Content</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!-- Iterate over the list of petitions -->
-    <tr th:each="petition : ${petitions}">
-        <td th:text="${petition.title}"></td>
-        <td th:text="${petition.content}"></td>
-    </tr>
-    </tbody>
-</table>
 </body>
 </html>
 
