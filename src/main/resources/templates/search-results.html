@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <title>Search Results</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
 </head>
 <body>
 <h2>Search Results</h2>
@@ -21,3 +23,26 @@
 <a th:href="@{/}">Back to All Petitions</a>
 </body>
 </html>
+
+<div class="input-group mb-3">
+              <span class="input-group-text handle"
+                    id="basic-addon1">@</span>
+  <input id="handle"
+         type="text"
+         class="form-control inputBoxes"
+         placeholder="My Handle"
+         aria-label="Username"
+         aria-describedby="basic-addon1">
+</div>
+
+<div class="input-group col-xs">
+  <span class="input-group-text handle">Comment</span>
+  <textarea id="comment"
+            class="form-control inputBoxes"
+            placeholder="Add Your Comment"
+            aria-label="With textarea"></textarea>
+</div>
+<br>
+<input id="clear"
+       type="submit"
+       class="btn btn-primary submit" />
