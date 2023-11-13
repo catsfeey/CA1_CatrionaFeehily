@@ -13,6 +13,17 @@
   </style>
   <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
 </head>
+<style>
+p {
+  color: #663399;
+  border-radius: 10px;
+  border-color: #663399;
+  font-family: sans-serif;
+  font-size: 20px;
+  padding: 10px;
+  background-color: #FFF0F5;
+}
+</style>
 <body>
 <div class="container">
 <h2 class="heading2">Search Results</h2>
@@ -32,11 +43,15 @@
     </li>
   </ul>
 
+
+  <div th:if="${searchResults == null or #lists.isEmpty(searchResults)}">
+
+      <p>No matching petitions found.</p>
+  </div>
+
 </div>
 
-      <div th:if="${searchResults == null}">
-        <p>No matching petitions found.</p>
-      </div>
+
 <br>
 <a class="link"  th:href="@{/}">Back to All Petitions</a>
 </div>
