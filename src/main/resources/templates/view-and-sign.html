@@ -3,37 +3,67 @@
 
 <head>
   <title>View and Sign Petition</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+        crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
 </head>
-<body>
-<h2>View and Sign Petition</h2>
+<style>
+p {
+  color: #663399;
+  border-radius: 10px;
+  border-color: #663399;
+  font-family: sans-serif;
+  font-size: 20px;
+  padding: 10px;
+  background-color: #FFF0F5;
+}
 
-<div>
-  <li th:each="petition : ${petitionToSign}">
-    <p><strong>Title:</strong> <span th:text="${petition.title}"></span></p>
-    <p><strong>Content:</strong> <span th:text="${petition.content}"></span></p>
+body {
+    background-color: plum;
+  }
+</style>
+<body>
+<div class="container">
+<h2 class="heading2">Petition</h2>
+  <div class="row justify-content-md-center">
+    <div class="col col-lg-6">
+
+<div class="form3">
+  <li class="list-group-item form3" th:each="petition : ${petitionToSign}">
+    <p style="font-weight: bold; color: #663399; border-radius: 10px; border-color: #663399;
+       font-family: sans-serif; font-size: 20px;
+       padding: 10px; background-color: #E0FFFF;">Title: <span style="font-weight: normal;" th:text="${petition.title}"></span></p>
+    <p style="font-weight: bold; color: #663399; border-radius: 10px; border-color: #663399;
+       font-family: sans-serif; font-size: 20px;
+       padding: 10px; background-color: #E0FFFF;">Content: <span style="font-weight: normal;" th:text="${petition.content}"></span></p>
   </li>
 </div>
 
 <hr>
 
-<h2>Sign Petition</h2>
+<h2 class="heading3">Add Signature</h2>
 
-<form th:action="@{/submit}" method="post">
-  <li th:each="petition : ${petitionToSign}">
+<form class="form" th:action="@{/submit}" method="post">
+
+  <li class="list-group-item form" th:each="petition : ${petitionToSign}">
   <input type="hidden" name="petitionId" th:value="${petition.id}">
   </li>
-  <label for="name">Your Name:</label>
-  <input type="text" id="name" name="name" required>
-
-  <br>
-
-  <label for="email">Your Email:</label>
-  <input type="email" id="email" name="email" required>
-  <button type="submit">Sign Petition</button>
-
+  <div class="input-group mb-3">
+  <label class="input-group-text handle" for="name">Your Name:</label>
+  <input class="form-control inputBoxes" type="text" id="name" name="name" required>
+  </div>
+  <div class="input-group mb-3">
+  <label class="input-group-text handle" for="email">Your Email:</label>
+  <input class="form-control inputBoxes" type="email" id="email" name="email" required>
+  </div>
+  <input type="submit" class="btn btn-primary submit" value="Sign Petition">
 </form>
 <br>
-<a th:href="@{/}">Back to All Petitions</a>
+<a class="link" th:href="@{/}">Back to All Petitions</a>
+    </div>
+    </div>
+</div>
 </body>
 </html>

@@ -1,6 +1,4 @@
 package com.example.catrionaspetitions;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.stereotype.Controller;
@@ -25,7 +23,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 	@GetMapping("/")
 	public String showAllPetitions(Model model) {
 		model.addAttribute("petitions", petitions);
-		return "all-petitions"; // The name of the Thymeleaf template to render
+		return "all-petitions";
 	}
 
 
@@ -77,20 +75,18 @@ public class ServletInitializer extends SpringBootServletInitializer {
 	@PostMapping("/submit")
 	public String submitSignedPetition(@RequestParam Long petitionId, @RequestParam String name, @RequestParam String email, Model model) {
 
-		List<Petition.Signature> signatureList = new ArrayList<>();
+		Petition.Signature signature = new Petition.Signature(name, email);
+
 		for (Petition petitionToAddSignatureTo : petitions) {
-			if (petitionToAddSignatureTo.getId()==(petitionId)) {
-				petitionToAddSignatureTo.addSignature(name, email);
-				signatureList = petitionToAddSignatureTo.getSignatures();
-				model.addAttribute("petitions", petitions);
+			if (petitionToAddSignatureTo.getId() == (petitionId)) {
+				petitionToAddSignatureTo.getSignatures().add(signature);
 			}
-
-
 		}
+
+		model.addAttribute("petitions", petitions);
 		model.addAttribute("id", petitionId);
 		model.addAttribute("name", name);
 		model.addAttribute("email", email);
-		model.addAttribute("signatureList", signatureList);
 		return "signed-petitions";
 	}
 

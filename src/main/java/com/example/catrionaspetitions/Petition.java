@@ -1,10 +1,6 @@
 package com.example.catrionaspetitions;
-
-import org.springframework.cglib.core.Signature;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Petition {
 
@@ -52,14 +48,9 @@ public class Petition {
     // Method to add a signature
     public void addSignature(String name, String email) {
         Signature signature = new Signature(name, email);
-        if (signatures == null) {
-            signatures = new ArrayList<>();
-        }
         signatures.add(signature);
     }
-//    public void addSignature(Signature signature){
-//        signatures.add(signature);
-//    }
+
 
     public List<Signature> getSignatures(){
         return signatures;

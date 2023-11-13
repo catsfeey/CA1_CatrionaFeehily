@@ -3,25 +3,51 @@
 
 <head>
     <title>Signed Petitions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+          crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
 </head>
+<style>
+
+body {
+    background-color: plum;
+  }
+</style>
 <body>
-<h2>Signed Petitions</h2>
+<div class="container">
+    <h2 class="heading2">Signed Petitions</h2>
+    <div class="row justify-content-md-center">
+        <div class="col col-lg-8" >
+            <ul class="list-group">
+                <li style="background-color: #87CEEB; border-color:#663399; border-width: thick; padding: 15px" class="list-group-item" th:each="petition : ${petitions}">
+                    <h3 class="heading3">Petition:</h3>
+                    <div class="form3">
+                    <p style="font-weight: bold; color: #663399; border-radius: 10px; border-color: #663399;
+                    font-family: sans-serif; font-size: 20px;
+         padding: 10px; background-color: #E0FFFF;">Title: <span style="font-weight: normal;" th:text="${petition.title}"></span></p>
+                    <p style="font-weight: bold; color: #663399; border-radius: 10px; font-family: sans-serif; font-size: 20px;
+         padding: 10px; background-color: #E0FFFF;">Content: <span style="font-weight: normal;" th:text="${petition.content}"></span></p>
+                    </div>
+                        <h3 class="heading3">Signatures:</h3>
 
-<ul>
-    <li th:each="petition : ${petitions}">
-        <p><strong>Title:</strong> <span th:text="${petition.title}"></span></p>
-        <p><strong>Content:</strong> <span th:text="${petition.content}"></span></p>
-        <h3>Signatures:</h3>
-        <ul>
-            <li th:each="signature : ${signatureList}">
-                <p><strong>Name:</strong> <span th:text="${signature.name}"></span></p>
-                <p><strong>Email:</strong> <span th:text="${signature.email}"></span></p>
-            </li>
-        </ul>
-    </li>
-</ul>
+                    <ul class="list-group" >
+                        <li class="list-group-item form2" style="border-radius:0px" th:each="signature : ${petition.signatures}">
+                            <p style="font-weight: bold; color: #DB7093; border-radius: 10px; font-family: sans-serif; font-size: 20px;
+                padding: 10px; background-color: #FFEFD5">Name: <span style="font-weight: normal;" th:text="${signature.name}"></span></p>
+                            <p style="font-weight: bold; color: #DB7093; border-radius: 10px; font-family: sans-serif; font-size: 20px;
+                padding: 10px; background-color: #FFEFD5">Email: <span style="font-weight: normal;" th:text="${signature.email}"></span></p>
+                        </br>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
 
-<a th:href="@{/}">Back to All Petitions</a>
+            <br>
+            <a class="link" th:href="@{/}">Back to All Petitions</a>
+        </div>
+    </div>
+</div>
 </body>
 </html>

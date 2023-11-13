@@ -3,23 +3,56 @@
 
 <head>
   <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+        crossorigin="anonymous">
   <title>All Petitions</title>
   <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
   <style> body {
     background-color: plum;
   }
+
   </style>
 </head>
 <body>
-<h2>All Petitions</h2>
-<ul>
-  <li th:each="petition : ${petitions}">
-    <p><strong>Title:</strong> <span th:text="${petition.title}"></span></p>
-    <p><strong>Content:</strong> <span th:text="${petition.content}"></span></p>
+<div class="container">
+<h2 class="heading2">All Petitions</h2>
+  <div class="row justify-content-md-center">
+    <div class="col col-lg-8">
+<ul class="list-group form3" style="background-color: plum; border-radius:0px">
+  <li class="list-group-item" style="background-color: #87CEEB; border-color:#663399; border-width: thick; padding: 15px" th:each="petition : ${petitions}">
+    <h3 class="heading3">Petition:</h3>
+    <p style="font-weight: bold; color: #663399; border-radius: 10px;
+       font-family: sans-serif; font-size: 20px;
+       padding: 10px; background-color: #E0FFFF;">
+      Title: <span style="font-weight: normal;" th:text="${petition.title}"></span></p>
+    <p style="font-weight: bold; color: #663399; border-radius: 10px;
+       font-family: sans-serif; font-size: 20px;
+       padding: 10px; background-color: #E0FFFF;">
+      Content: <span style="font-weight: normal;" th:text="${petition.content}"></span></p>
+    <a class="link"  style="color: #C71585" th:href="@{/{id}(id=${petition.id})}">View and Sign</a>
+    <h3 class="heading3">Signatures:</h3>
 
-    <a th:href="@{/{id}(id=${petition.id})}">View and Sign</a>
+    <ul class="list-group" >
+      <li class="list-group-item form2" style="border-radius:0px" th:each="signature : ${petition.signatures}">
+        <p style="font-weight: bold; color: #DB7093; border-radius: 10px; font-family: sans-serif; font-size: 20px;
+                padding: 10px; background-color: #FFEFD5">Name: <span style="font-weight: normal;" th:text="${signature.name}"></span></p>
+        <p style="font-weight: bold; color: #DB7093; border-radius: 10px; font-family: sans-serif; font-size: 20px;
+                padding: 10px; background-color: #FFEFD5">Email: <span style="font-weight: normal;" th:text="${signature.email}"></span></p>
+        </br>
+      </li>
+    </ul>
   </li>
+  <hr>
+  <br>
   </ul>
+      <br>
+      <a class="link"  th:href="@{/create}">Create New Petition</a> <br>
+      <a class="link" style="color: #C71585" th:href="@{/search}">Search for Petition</a> <br>
+    </div>
+  </div>
+
 </div>
 </body>
 </html>
