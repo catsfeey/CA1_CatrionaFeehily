@@ -13,23 +13,18 @@ pipeline {
                 sh 'mvn clean:clean'
                 sh 'mvn dependency:copy-dependencies'
                 sh 'mvn compiler:compile'
-
-
+            }
+        }
+        stage ('Archive'){
+            steps{
+                archiveArtifacts allowEmptyArchive: true
+                    artifacts: '/catrionaspetitions.war'
             }
         }
 
-        stage('Deploy - Approve to Proceed') {
-            steps {
-            // Create an Approval Button with a timeout of 15minutes.
-            	  timeout(time: 15, unit: "MINUTES") {
-            	  input message: 'Do you want to approve the deployment?', ok: 'Yes'
-                }
-            }
-        }
-
-        stage('Exec') {
-            steps {
-                sh 'mvn spring-boot:run'
+        stage('Deploy'){
+            steps{
+                sh 'docker build -f Dockerfile -t CA1app'
             }
         }
 
