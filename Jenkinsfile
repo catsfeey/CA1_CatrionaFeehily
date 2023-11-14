@@ -20,11 +20,13 @@ pipeline {
 
         stage('Deploy - Approve to Proceed') {
             steps {
-                script {
-                    input('Deploy to Production?')
+            // Create an Approval Button with a timeout of 15minutes.
+            	  timeout(time: 15, unit: "MINUTES") {
+            	  input message: 'Do you want to approve the deployment?', ok: 'Yes'
                 }
             }
         }
+
         stage('Exec') {
             steps {
                 sh 'mvn spring-boot:run'
