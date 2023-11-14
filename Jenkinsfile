@@ -15,14 +15,16 @@ pipeline {
                 sh 'mvn compiler:compile'
             }
         }
-
-
+        stage('Package'){
+            steps{
+                sh 'mvn package'
+            }
+        }
         stage ('Archive'){
             steps{
                 archiveArtifacts (allowEmptyArchive: true, artifacts: 'target/catrionaspetitions.war')
             }
         }
-
         stage('Deploy'){
             steps{
                 sh 'docker build -f Dockerfile -t CA1app'
