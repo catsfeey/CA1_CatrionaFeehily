@@ -17,10 +17,19 @@ pipeline {
 
             }
         }
+
+        stage('Deploy - Approve to Proceed') {
+            steps {
+                script {
+                    input('Deploy to Production?')
+                }
+            }
+        }
         stage('Exec') {
             steps {
                 sh 'mvn spring-boot:run'
             }
         }
+
     }
 }
