@@ -18,7 +18,7 @@ pipeline {
         stage ('Archive'){
             steps{
                 archiveArtifacts allowEmptyArchive: true
-                    artifacts: '/catrionaspetitions.war'
+                    artifacts: '**/catrionaspetitions*.war'
             }
         }
 
