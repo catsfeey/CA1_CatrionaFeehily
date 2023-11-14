@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Deploy'){
             steps{
-                sh 'docker build -f Dockerfile -t CA1app . '
+                sh 'sudo docker build -f Dockerfile -t CA1app . '
             }
         }
     }
