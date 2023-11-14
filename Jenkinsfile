@@ -33,6 +33,7 @@ pipeline {
                 }
             }
         }
+
         stage('Deploy'){
             steps{
                 sh 'docker build -f Dockerfile -t catsapp . '
