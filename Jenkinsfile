@@ -21,7 +21,6 @@ pipeline {
                     artifacts: '**/catrionaspetitions*.war'
             }
         }
-
         stage('Deploy'){
             steps{
                 sh 'docker build -f Dockerfile -t CA1app'
