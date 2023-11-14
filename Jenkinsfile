@@ -36,8 +36,8 @@ pipeline {
 
         stage('Deploy'){
             steps{
-                sh 'docker build -f Dockerfile -t catsapp . '
-                sh 'docker rm -f "catsappcontainer" || true'
+                sh 'sudo docker build -f Dockerfile -t catsapp . '
+                sh 'sudo docker rm -f "catsappcontainer" || true'
                 sh 'sudo docker run --name "catsappcontainer" -p 9090:8080 --detach catsapp:latest'
                 //sh 'sudo docker build -f Dockerfile -t catsapp . '
             }
