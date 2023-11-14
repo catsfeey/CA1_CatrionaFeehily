@@ -15,9 +15,11 @@ pipeline {
                 sh 'mvn compiler:compile'
             }
         }
+
+
         stage ('Archive'){
             steps{
-                archiveArtifacts (allowEmptyArchive: true, artifacts: '**/catrionaspetitions*.war')
+                archiveArtifacts (allowEmptyArchive: true, artifacts: 'target/catrionaspetitions.war')
             }
         }
 
