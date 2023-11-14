@@ -17,15 +17,14 @@ pipeline {
         }
         stage ('Archive'){
             steps{
-                archiveArtifacts allowEmptyArchive: true
-                    artifacts: '**/catrionaspetitions*.war'
+                archiveArtifacts (allowEmptyArchive: true, artifacts: '**/catrionaspetitions*.war')
             }
         }
+
         stage('Deploy'){
             steps{
                 sh 'docker build -f Dockerfile -t CA1app'
             }
         }
-
     }
 }
